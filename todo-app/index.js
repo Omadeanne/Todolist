@@ -6,7 +6,7 @@ function uuid() {
         return v.toString(16);
     });
 }
- 
+
 const todoKey = "todoList"
 
 // READ  TODO FUNCTION: Retrieve todos from database
@@ -47,10 +47,6 @@ const childElement = (inputValue, id) =>{
 const displayNewTodo = (parentAttribute, childElement) =>{
     // Retrieve item from database
     const todoDatabase = readTodo()
-    // sort todo
- todoDatabase.sort((a,b) => 
-a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1:0
-);
     // Get the parent element
     const parentElement = document.querySelector(`${parentAttribute}`)
     console.log("here");
@@ -62,7 +58,6 @@ a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1:0
 }
 
 displayNewTodo("#todos", childElement)
-
 
 
 // Create a todo
@@ -86,7 +81,7 @@ const createTodo = (event) => {
     storeTodo(todoDatabase);
     displayNewTodo("#todos", childElement)
 
-    todoInput.value = "";
+    todoInput.value = ""
 }
 
 
@@ -118,13 +113,7 @@ const updateTodo = (event) =>{
 
 // DELETE TODO FUNCTION
 const deleteTodo = (event) =>{
-    Swal.fire({
-        title: 'Delete Todo',
-        text: 'Are you sure?',
-        icon: 'warning',
-        confirmButtonText: 'Yes' 
-      }).then(() =>{
-        // Get the id of the delete button
+    // Get the id of the delete button
     todoId = event.target.parentElement.id.replace('todo-', '')
     // Read the local storage
     const todoDatabase = readTodo()
@@ -137,7 +126,9 @@ const deleteTodo = (event) =>{
         storeTodo(todoDatabase)
         displayNewTodo("#todos", childElement)
     }
-      })
-    
 
-};
+}
+
+
+
+
