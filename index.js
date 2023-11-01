@@ -120,24 +120,28 @@ const updateTodo = (event) =>{
 const deleteTodo = (event) =>{
     Swal.fire({
         title: 'Delete Todo',
-        text: 'Are you sure?',
+        text: 'Are you sure you want to delete item?',
         icon: 'warning',
-        confirmButtonText: 'Yes' 
-      }).then(() =>{
-        // Get the id of the delete button
-    todoId = event.target.parentElement.id.replace('todo-', '')
-    // Read the local storage
-    const todoDatabase = readTodo()
-    // Find the todos index
-    todoIndex = todoDatabase.findIndex(todo => todo.id === todoId)
-    if(todoIndex !== -1){
-        // Remove the todo at the specified index
-        todoDatabase.splice(todoIndex, 1)
-        // Store in local storage
-        storeTodo(todoDatabase)
-        displayNewTodo("#todos", childElement)
+        confirmButtonText: 'Yes',
+        showCancelButton: true, 
+      }).then((res) =>{
+        console.log(res.isConfirmed);
+        if(res.isConfirmed){
+            // Get the id of the delete button
+            todoId = event.target.parentElement.id.replace('todo-', '')
+            // Read the local storage
+            const todoDatabase = readTodo()
+            // Find the todos index
+            todoIndex = todoDatabase.findIndex(todo => todo.id === todoId)
+            if(todoIndex !== -1){
+                // Remove the todo at the specified index
+                todoDatabase.splice(todoIndex, 1)
+                // Store in local storage
+                storeTodo(todoDatabase)
+                displayNewTodo("#todos", childElement)
+            } else {
+                return;
+            }
     }
-      })
-    
-
+      });
 };
