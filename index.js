@@ -101,7 +101,7 @@ if(!todoValue){
     const newTodo = {
         todoName: todoValue,
         id: uuid(),
-        createdAt: Date.now()
+        createdAt: Date.now(),
     }
     // Store new todo in the database.
     todoDatabase?.push(newTodo);
@@ -111,21 +111,23 @@ if(!todoValue){
     displayNewTodo("#todos", childElement)
 // resetting form value
     todoInput.value = "";
+    
+    todoInput.value = "";
 }
 
 
 const handleEditMode = (todoId) =>{
     const todoDatabase = readTodo();
     // getting exact todo to edit
-    const todoUpdate =todoDatabase.find((todo) => todo.id === todoId)
+    const todoUpdate =todoDatabase.find((todo) => todo.id === todoId);
     if(!todoUpdate){
-        return
+        return;
     }
     
     // Set the value and ID for the update input and button
-    todoInput.value = todoUpdate. todoName
-    const updateTodoButton = document. getelementById("update-todo-btn")
-    const addTodoButton = document. getElementById('add-todo-btn')
+    todoInput.value = todoUpdate. todoName;
+    const updateTodoButton = document.getElementById("update-todo-btn")
+    const addTodoButton = document. getElementById("add-todo-btn")
     addTodoButton.classList.add("hidden")
     updateTodoButton.classList.remove("hidden")
     updateTodoButton.setAttribute("todo-id-to-update", todoId)
@@ -133,12 +135,11 @@ const handleEditMode = (todoId) =>{
 }
 
 
-
 // UPDATE TODO FUNCTION
 const updateTodo = () => {
-    const todoValue = todoInput.value
+    const todoValue = todoInput.value;
     if (!todoValue) {
-        const errorText = document.getElementById("form-message")
+        const errorText = document.getElementById("form-message");
         errorText.innerHTML = "Please enter a valid todo.";
         errorText.classList.remove("hidden");
         setTimeout(() => {
@@ -147,27 +148,31 @@ const updateTodo = () => {
         return;
     }
 
+    const updateTodoButton = document.getElementById("update-todo-btn");
+    const addTodoButton = document.getElementById('add-todo-btn');
+    const todoId = updateTodoButton.getAttribute("todo-id-to-update");
 
-    const updateTodoButton = document.getElementById("update-todo-btn")
-    const addTodoButton = document.getElementById('add-todo-btn')
-    const todoId = updateTodoButton.getAttribute("todo-id-to-update")
-    // console.log(todoId)
-    // Read the local storage
     const todoDatabase = readTodo();
+
     // Find the todo's index
     const todoIndex = todoDatabase.findIndex((todo) => todo.id === todoId);
+
     if (todoIndex !== -1) {
         // Update the todo with the edited task
         todoDatabase[todoIndex].todoName = todoValue;
+
         // Store in local storage
         storeTodo(todoDatabase);
-        addTodoButton.classList.remove("hidden")
-        updateTodoButton.classList.add("hidden")
-        todoInput.value = ""
+
+        addTodoButton.classList.remove("hidden");
+        updateTodoButton.classList.add("hidden");
+        todoInput.value = "";
+
         // Update the displayed todos
         displayNewTodo("#todos", childElement);
     }
 }
+
 
 
 // DELETE TODO FUNCTION

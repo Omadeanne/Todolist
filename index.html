@@ -1,41 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Todolist</title>
-</head>
+    <title>ClockingIn</title>
+  </head>
 
-<body class="bg-purple-500 flex justify-center items-center mt-10 ">
-    <div class="w-2/4 bg-white rounded-lg ">
-    <header class="px-5 py-4 border-b border-slate-400 max-w-lg mx-auto  ">
-<h1 class="text-2xl text-center font-medium ">Todolist</h1>
-    </header>
-    <main class="px-5 mt-10 max-w-lg mx-auto">
+  <body class="bg-purple-500  ">
+    <div class="flex justify-center items-center w-full h-[90vh]">
+      <div class="w-2/4 bg-white rounded-lg border border-black">
+        <header
+          class="flex flex-row justify-center gap-10 px-5 py-4 border-b border-slate-400 max-w-lg mx-auto"
+        >
+          <img src="./images/alarm clock.png" alt="" class="w-8 h-8" />
+          <h1 class="text-2xl text-center font-bold text-purple-500 ">
+            Periscope
+            <span
+              class="w-2 h-2 bg-red-500 inline-block rounded-full ml-2"
+            ></span>
+            <span
+              class="w-2 h-2 bg-yellow-500 inline-block rounded-full"
+            ></span>
+            <span class="w-2 h-2 bg-green-500 inline-block rounded-full"></span>
+          </h1>
+        </header>
 
-        <form onsubmit="createTodo(event)" class="flex flex-col items-center sm:flex-row gap-2">
-            <input maxlength="40" placeholder="What are you doing today,buddy?"
+        <main class="px-5 mt-10 max-w-lg mx-auto">
+          <form
+            onsubmit="createTodo(event)"
+            class="flex flex-col items-center sm:flex-row gap-2"
+          >
+            <input
+              maxlength="40"
+              placeholder="What are you doing today,buddy?"
               class="p-2 rounded-lg border border-slate-100 w-full"
-              id="todo-input">
-              
-            <button id="add-todo-btn" class="bg-purple-500 rounded-lg px-2.5 py-2 text-sm text-white w-[100px]">
-                Add todo</button>
-            <button id="update-todo-btn" onclick="updateTodo()" class="bg-purple-500 rounded-lg px-2.5 py-2 text-sm text-white w-[100px] hidden">
-                Update todo</button>
+              id="todo-input"
+            />
+            <button
+              id="add-todo-btn"
+              class="bg-purple-500 rounded-lg px-2.5 py-2 text-sm text-white w-[100px]"
+            >
+              Add todo
+            </button>
+            <button
+              id="update-todo-btn"
+              onclick="updateTodo()"
+              class="bg-purple-500 rounded-lg px-2.5 py-2 text-sm text-white w-[100px] hidden"
+            >
+              Update todo
+            </button>
+          </form>
+          <span class="hidden" id="form-message"></span>
 
-        </form>
-<span class="hidden" id="form-message"></span>
-
-
-<!-- todo text area -->
-<div class="mt-5" id="todos">
-       
-</div>
-     </main>
-     <script src="index.js"></script>
-   
-</body>
+          <!-- todo text area -->
+          <div class="mt-5" id="todos"></div>
+        </main>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
 </html>
